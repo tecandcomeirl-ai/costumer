@@ -5,15 +5,19 @@
         <field name="model">l10n_latam.document.type</field>
         <field name="inherit_id" ref="l10n_latam_invoice_document.view_document_type_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
+            <!-- Algunas versiones traen este formulario en solo lectura -->
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">true</attribute>
+            </xpath>
+            <xpath expr="//form" position="inside">
                 <group string="Series y numeración">
-                    <field name="series_ids" nolabel="1" context="{'default_l10n_latam_document_type_id': id}">
+                    <field name="series_ids" nolabel="1" readonly="0"
+                           context="{'default_l10n_latam_document_type_id': id}">
                         <list editable="bottom">
                             <field name="name"/>
                             <field name="journal_id"/>
                             <field name="padding"/>
                             <field name="next_number"/>
-                            <field name="document_type" column_invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                         </list>
                     </field>
