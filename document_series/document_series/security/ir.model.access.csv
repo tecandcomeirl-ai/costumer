@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_document_series_user,document.series user,model_document_series,base.group_user,1,0,0,0
+access_document_series_manager,document.series manager,model_document_series,account.group_account_manager,1,1,1,1

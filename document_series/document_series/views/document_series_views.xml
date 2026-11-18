@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="document_series_view_list" model="ir.ui.view">
+        <field name="name">document.series.list</field>
+        <field name="model">document.series</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="l10n_latam_document_type_id"/>
+                <field name="document_type"/>
+                <field name="model_name"/>
+                <field name="journal_id"/>
+                <field name="next_number"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="document_series_view_form" model="ir.ui.view">
+        <field name="name">document.series.form</field>
+        <field name="model">document.series</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archivado" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="F001"/>
+                            <field name="l10n_latam_document_type_id"/>
+                            <field name="document_type"/>
+                            <field name="model_name"/>
+                            <field name="journal_id"/>
+                        </group>
+                        <group>
+                            <field name="padding"/>
+                            <field name="next_number"/>
+                            <field name="sequence_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="document_series_action" model="ir.actions.act_window">
+        <field name="name">Series de documentos</field>
+        <field name="res_model">document.series</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="document_series_menu"
+              name="Series de documentos"
+              parent="account.menu_finance_configuration"
+              action="document_series_action"
+              sequence="90"/>
+</odoo>
