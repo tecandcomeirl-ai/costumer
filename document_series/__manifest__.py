@@ -1,6 +1,6 @@
 {
     'name': 'Series de documentos',
-    'version': '19.0.1.1.1',
+    'version': '19.0.1.1.2',
     'category': 'Accounting/Localizations',
     'summary': 'Series personalizadas (F001, B001, T001...) por tipo de documento',
     'depends': ['account', 'stock', 'l10n_latam_invoice_document'],

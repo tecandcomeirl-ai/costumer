@@ -34,14 +34,11 @@ class AccountMove(models.Model):
         )
 
     def _post(self, soft=True):
+        # El nombre se escribe completo (ej. B001-00000002) y NO se usa el
+        # prefijo del tipo de documento, para evitar "False B001-..." o "B B001-...".
         for move in self.filtered(
                 lambda m: m.series_id and m.state == 'draft'
-                and m.is_sale_document(include_receipts=True)):
-            if move.l10n_latam_use_documents:
-                # El inverse de l10n_latam_document_number arma el name:
-                # "<prefijo del tipo> <serie>-<correlativo>"
-                if not move.l10n_latam_document_number:
-                    move.l10n_latam_document_number = move.series_id.get_next_number()
-            elif move.name in (False, '/', 'New'):
-                move.name = move.series_id.get_next_number()
+                and m.is_sale_document(include_receipts=True)
+                and m.name in (False, '/', 'New')):
+            move.name = move.series_id.get_next_number()
         return super()._post(soft=soft)
